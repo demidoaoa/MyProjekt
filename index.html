@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<head>
+    <title>My Website</title>
+    <style>
+        body {
+            background-color: #fff;
+        }
+
+        .message {
+            padding: 10px;
+            background-color: #f5f6fa;
+            color: #8094ae;
+            margin-bottom: 10px;
+            border-radius: 15px;
+        }
+
+        .name {
+            font-weight: bold;
+            color: #3b4651;
+
+        }
+
+        .header {
+            margin-bottom: 5px;
+        }
+
+        .time {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+
+<body>
+    <template id="template">
+        <div class="message">
+            <div class="header">
+                <span class="name">{{name}}</span>
+                <span class="time">{{time}}</span>
+            </div>
+            <div class="text">{{text}}</div>
+        </div>
+    </template>
+</body>
+
+<script>
+    messages = [
+        {
+            author: "demid1",
+            text: "bla-bla",
+            createdAt: new Date(),
+        },
+        {
+            author: "demid2",
+            text: "bla-bla-oaoao",
+            createdAt: new Date(),
+        },
+        {
+            author: "demid2",
+            text: "bla-bla-oaoao",
+            createdAt: new Date(),
+        },
+        {
+            author: "demid3",
+            text: "bla-bla-ooaao",
+            createdAt: new Date(),
+        }
+    ]
+
+    var t = document.getElementById("template");
+
+
+    for (i = 0; i < messages.length; i++) {
+        clone = t.content.cloneNode(true);
+        nameEl = clone.querySelector('.name')
+        nameEl.innerText = messages[i].author
+        
+        timeEl = clone.querySelector('.time')
+        timeEl.innerText = messages[i].createdAt
+        
+        textEl = clone.querySelector('.text')
+        textEl.innerText = messages[i].text
+        document.body.appendChild(clone);
+    } 
+
+    
+
+</script>
+
+</html>
