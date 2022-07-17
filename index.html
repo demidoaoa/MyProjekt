@@ -45,46 +45,25 @@
 </body>
 
 <script>
-    messages = [
-        {
-            author: "demid1",
-            text: "bla-bla",
-            createdAt: new Date(),
-        },
-        {
-            author: "demid2",
-            text: "bla-bla-oaoao",
-            createdAt: new Date(),
-        },
-        {
-            author: "demid2",
-            text: "bla-bla-oaoao",
-            createdAt: new Date(),
-        },
-        {
-            author: "demid3",
-            text: "bla-bla-ooaao",
-            createdAt: new Date(),
-        }
-    ]
-
     var t = document.getElementById("template");
 
+    fetch('http://localhost:8080/messages')
+        .then(response => response.json())
+        .then(messages => {
+            for (i = 0; i < messages.length; i++) {
+                clone = t.content.cloneNode(true);
+                nameEl = clone.querySelector('.name')
+                nameEl.innerText = messages[i].author
 
-    for (i = 0; i < messages.length; i++) {
-        clone = t.content.cloneNode(true);
-        nameEl = clone.querySelector('.name')
-        nameEl.innerText = messages[i].author
-        
-        timeEl = clone.querySelector('.time')
-        timeEl.innerText = messages[i].createdAt
-        
-        textEl = clone.querySelector('.text')
-        textEl.innerText = messages[i].text
-        document.body.appendChild(clone);
-    } 
+                timeEl = clone.querySelector('.time')
+                timeEl.innerText = messages[i].createdAt
 
-    
+                textEl = clone.querySelector('.text')
+                textEl.innerText = messages[i].text
+                document.body.appendChild(clone);
+            }
+
+        });
 
 </script>
 
